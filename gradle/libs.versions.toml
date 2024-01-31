@@ -1,0 +1,11 @@
+[versions]
+quarkus = "3.6.8"
+
+[libraries]
+assertj = { group = "org.assertj", name = "assertj-core", version = "3.25.2" }
+quarkus-bom = { group = "io.quarkus.platform", name = "quarkus-bom", version.ref = "quarkus" }
+maverick-synergy = { group = "com.sshtools", name = "maverick-synergy-client", version = "3.0.11" }
+
+[plugins]
+quarkus = { id = "io.quarkus", version.ref = "quarkus" }
+lombok = { id = "io.freefair.lombok", version = "8.4" }

@@ -1,0 +1,16 @@
+<html lang='en'>
+<body>
+<p>
+    A new ssh-certificate with serial {serial} has been generated for your account.<br/>
+    You may define <code>@cert-authority &lt;Hosts&gt; {host-authority-pubkey}</code> in your
+    <code>~/.ssh/known_hosts</code> file to avoid TOFU-prompts.
+</p>
+
+<p>Your certificate contains the following principals:</p>
+<ul>
+    {#for principal in principals}
+        <li>{principal}</li>
+    {/for}
+</ul>
+</body>
+</html>
