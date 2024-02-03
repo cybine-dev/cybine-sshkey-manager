@@ -83,8 +83,10 @@ public class KeyService
             throws SshException, IOException
     {
         SshKeyPair keyPair = SshKeyPair.getKeyPair(null, publicKey);
-        SshCertificate certificate = SshCertificateAuthority.generateUserCertificate(keyPair, serial,
-                String.join(",", principals), this.applicationConfig.defaultCertificateValidity(), this.authorityKey);
+        SshCertificate certificate = SshCertificateAuthority.generateCertificate(keyPair, serial,
+                SshCertificate.SSH_CERT_TYPE_USER, comment, principals,
+                this.applicationConfig.defaultCertificateValidity(), Collections.emptyList(),
+                new CertificateExtension.Builder().defaultExtensions().build(), this.authorityKey);
 
         return SshKeyUtils.getFormattedKey(certificate.getCertificate(), comment);
     }
