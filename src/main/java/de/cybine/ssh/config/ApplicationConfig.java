@@ -18,11 +18,15 @@ public interface ApplicationConfig
     @WithName("authority-key-passphrase")
     Optional<String> authorityKeyPassphrase( );
 
-    @WithDefault("30")
+    @WithDefault("14")
     @WithName("default-certificate-validity")
     int defaultCertificateValidity( );
 
+    @WithDefault("30")
+    @WithName("max-certificate-validity")
+    int maxCertificateValidity( );
+
     @NotNull @NotBlank
     @WithName("host-authority-pubkey")
-    String hostAuthorityPubkey();
+    String hostAuthorityPubkey( );
 }

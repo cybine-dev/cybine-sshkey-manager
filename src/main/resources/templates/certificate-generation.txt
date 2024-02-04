@@ -1,4 +1,6 @@
 A new ssh-certificate with serial {serial} has been generated for your account.
+It will be valid until {valid-until}.
+
 You may define "@cert-authority <Hosts> {host-authority-pubkey}" in your ~/.ssh/known_hosts file to avoid TOFU-prompts.
 
 Your certificate contains the following principals:

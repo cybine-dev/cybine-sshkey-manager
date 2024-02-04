@@ -3,7 +3,6 @@ package de.cybine.ssh.api.v1.key;
 import de.cybine.ssh.service.*;
 import io.quarkus.security.*;
 import jakarta.inject.*;
-import jakarta.ws.rs.*;
 import lombok.*;
 import org.jboss.resteasy.reactive.*;
 
@@ -14,9 +13,9 @@ public class KeyResource implements KeyApi
 {
     private final KeyService keyService;
 
-    public RestResponse<String> generateCertificate(@QueryParam("public-key") String publicKey,
-            @QueryParam("serial") @DefaultValue("0") int serial)
+    public RestResponse<SignageResponse> generateCertificate(SignagePayload payload)
     {
-        return RestResponse.ok(this.keyService.createCertificate(publicKey, serial));
+        return RestResponse.ok(
+                SignageResponse.builder().certificate(this.keyService.createCertificate(payload)).build());
     }
 }
