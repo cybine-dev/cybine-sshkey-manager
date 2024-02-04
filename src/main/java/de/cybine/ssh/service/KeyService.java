@@ -61,15 +61,10 @@ public class KeyService
 
         try
         {
-            return this.createCertificate(SshKeyUtils.getPublicKey(payload.getPubkey()),
+
+            String certificate = this.createCertificate(SshKeyUtils.getPublicKey(payload.getPubkey()),
                     payload.getComment().orElse(email), payload.getSerial(), validFor, principals);
-        }
-        catch (IOException | SshException exception)
-        {
-            throw new CertificateGenerationException("Could not generate certificate", exception);
-        }
-        finally
-        {
+
             log.info("Generated new certificate with serial {} for user {}.", payload.getSerial(), email);
 
             String name = (String) this.token.claim("name").orElse(email);
@@ -83,6 +78,12 @@ public class KeyService
                                         .send()
                                         .await()
                                         .atMost(Duration.ofSeconds(10));
+
+            return certificate;
+        }
+        catch (IOException | SshException exception)
+        {
+            throw new CertificateGenerationException("Could not generate certificate", exception);
         }
     }
 
